@@ -1,0 +1,33 @@
+/***** ---------- *****
+    Template :    Gyme one page html5 responsive gym template
+    Author :      themewarehouse
+    Author URI :  http://hiknik.com/gyme
+    Version :     1.2
+***** ---------- *****/
+
+
+/***** ----- All css file ----- *****/
+
+/***** ----- bootstrap css ----- *****/
+@import url('css/bootstrap.min.css');
+/***** ----- font awesome css ----- *****/
+@import url('css/font-awesome.min.css');
+/***** ----- YTPlayer css ----- *****/
+@import url('css/jquery.mb.YTPlayer.min.css');
+/***** ----- slick css ----- *****/
+@import url('css/slick.css');
+@import url('css/slick-theme.css');
+/***** ----- lightbox css ----- *****/
+@import url('css/lightbox.min.css');
+/***** ----- animate css ----- *****/
+@import url('css/animate.min.css');
+/***** ----- slicknav css ----- *****/
+@import url('css/slicknav.min.css');
+/***** ----- bootstrap css ----- *****/
+@import url('css/hover.css');
+/***** ----- normalize css ----- *****/
+@import url('css/normalize.css');
+/***** ----- main css ----- *****/
+@import url('css/main.css');
+/***** ----- responsive css ----- *****/
+@import url('css/responsive.css');
