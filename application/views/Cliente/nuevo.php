@@ -34,7 +34,7 @@
 										<div class="col-md-4"><div class="form-group">
 
 											<label class="control-label mb-10 text-left">Direccion</label>
-											<input type="text" class="form-control" autocomplete="off" required="true" name="direccion" id="direccion"  autofocus="true" value="">
+											<input type="text" class="form-control solo_direccion" autocomplete="off" required="true" name="direccion" id="direccion"  autofocus="true" value="">
 										</div></div>
 										<div class="col-md-4"><div class="form-group">
 
@@ -179,5 +179,8 @@
 		$('.solo_letras').on('input', function () { 
 			this.value = this.value.replace(/[^a-zA-ZáéíóúüñÁÉÍÓÚÜÑ]/g,'');
 		});
-		 
+		$('.solo_direccion').on('input', function () { 
+			this.value = this.value.replace(/[^0-9a-zA-ZáéíóúüñÁÉÍÓÚÜÑ. #]/g,'');
+		});
+		  
 	</script>
