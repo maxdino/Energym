@@ -112,7 +112,7 @@
                     <div class="col-md-6">
                       <div class="form-group has-success">
                         <label class="control-label">PRECIO PRODUCTO</label>
-                        <input type="number" step="0.01" id="precioproducto"  min="0" name="precioproducto" onkeypress="return solonumeros(event)" class="form-control" placeholder=" ">
+                        <input type="text" step="0.01" id="precioproducto"   maxlength="9" name="precioproducto" onkeypress="return solonumeros(event)" class="form-control solo_precio" placeholder=" ">
                         <!--<small class="form-control-feedback"> Select your gender </small> -->
                       </div>
                     </div>
@@ -134,7 +134,7 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label class="control-label">STOCK MINIMO</label> 
-                        <input type="number" step="0.01" id="stockminimo"  min="0" name="stockminimo" onkeypress="return solonumeros(event)" class="form-control" placeholder=" ">
+                        <input type="text" step="0.01" id="stockminimo"  maxlength="9" name="stockminimo" onkeypress="return solonumeros(event)" class="form-control solo_numero" placeholder=" ">
                         <!--<small class="form-control-feedback"> This is inline help </small> -->
                       </div>
                     </div>
@@ -251,5 +251,10 @@
     <?php }
 
     ?>
-
+    $('.solo_precio').on('input', function () { 
+      this.value = this.value.replace(/[^0-9.]/g,'');
+    });
+    $('.solo_numero').on('input', function () { 
+      this.value = this.value.replace(/[^0-9.]/g,'');
+    });
   </script>

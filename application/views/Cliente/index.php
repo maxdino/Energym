@@ -192,47 +192,7 @@
     },"json");
   }
 
-var id_membresia;
- function editar_membresia(id)
- {
-//  alert(id);
-
-  $("#guardar"+id).show();
-  $("#cancelar"+id).show();
-  $("#editar"+id).hide();
-  $("#eliminar"+id).hide();
-  $("#fecha_final_"+id).attr("readonly",false);
-   id_membresia=id;
- } 
-
-function actualizar_membresia()
-{
-  // alert(id_membresia);
-  var valor_fecha=$("#fecha_final_"+id_membresia).val();
-  $("#guardar"+id_membresia).hide();
-  $("#cancelar"+id_membresia).hide();
-  $("#editar"+id_membresia).show();
-  $("#eliminar"+id_membresia).show();
-  $("#fecha_final_"+id_membresia).attr("readonly",true);
-   $.post(base_url+"Cliente/actualizar_data",{"id":id_membresia,"fecha":valor_fecha},function(data){
-
-      alertasuccess('Se Registro correctamente','Exitoso');
-   });
-
-    
-}
-function cancelar_membresia()
-{
-
- $("#guardar"+id_membresia).hide();
-  $("#cancelar"+id_membresia).hide();
-  $("#editar"+id_membresia).show();
-  $("#eliminar"+id_membresia).show();
-  $("#fecha_final_"+id_membresia).attr("readonly",true);
-
-
-}
-
+ 
 
 
 
@@ -269,7 +229,7 @@ function buscar_cliente(){
       if (data[i]["fecha_final"]!=null) {
      $('#tabla_clientes').append('<tr><td>'+(i+1)+'</td><td>'+data[i]["cliente_nombre_completo"]+'</td><td>'+data[i]["cliente_documento_numero"]+'</td><td>'+data[i]["fecha_inicio"]+'</td><td>'+data[i]["fecha_final"]+'</td><td><a href="#" onclick="eliminar('+data[i]["cliente_id"]+')" class="text-inverse" title="Eliminar" data-toggle="tooltip"><i class="mdi mdi-delete-empty txt-danger"></i></a><a href="cliente/editar/'+data[i]["cliente_id"]+'" class="text-inverse" title="Editar" data-toggle="tooltip"><i class="mdi mdi-table-edit txt-danger"></i></a></td></tr>');
     }else{
-      $('#tabla_clientes').append('<tr><td>'+(i+1)+'</td><td>'+data[i]["cliente_nombre_completo"]+'</td><td>'+data[i]["cliente_documento_numero"]+'</td><td> - </td><td> - </td><td><a href="#" onclick="eliminar('+data[i]["cliente_id"]+')" class="text-inverse" title="Eliminar" data-toggle="tooltip"><i class="mdi mdi-delete-empty txt-danger"></i></a><a href="cliente/editar/'+data[i]["cliente_id"]+'" class="text-inverse" title="Editar" data-toggle="tooltip"><i class="mdi mdi-table-edit txt-danger"></i></a></td></tr>');
+      $('#tabla_clientes').append('<tr><td>'+(i+1)+'</td><td>'+data[i]["cliente_nombre_completo"]+'</td><td>'+data[i]["cliente_documento_numero"]+'</td><td> - </td><td> - </td><td><a  onclick="eliminar('+data[i]["cliente_id"]+')" class="text-inverse" title="Eliminar" data-toggle="tooltip"><i class="mdi mdi-delete-empty txt-danger"></i></a><a href="cliente/editar/'+data[i]["cliente_id"]+'" class="text-inverse" title="Editar" data-toggle="tooltip"><i class="mdi mdi-table-edit txt-danger"></i></a></td></tr>');
     } }
     },'json');
  }else{

@@ -160,7 +160,7 @@ public function calcular_meses()
 public function buscar_cliente()
 {
     $data=$this->Mantenimiento_m->consulta3("SELECT cliente.cliente_id,cliente.cliente_nombre_completo,cliente.cliente_documento_numero,matricula.fecha_inicio,matricula.fecha_fin as fecha_final from cliente
-left join matricula on matricula.cliente_id=cliente.cliente_id where cliente_nombre_completo like '%".$_POST['id']."%' or cliente_documento_numero like '%".$_POST['id']."%' GROUP BY cliente.cliente_id  ");
+left join matricula on matricula.cliente_id=cliente.cliente_id where cliente.cliente_estado=1 and cliente_nombre_completo like '%".$_POST['id']."%' or cliente_documento_numero like '%".$_POST['id']."%'  GROUP BY cliente.cliente_id  ");
     echo json_encode($data);
 }
 

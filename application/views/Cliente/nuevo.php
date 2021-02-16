@@ -21,7 +21,7 @@
 											<div class="form-group">
 
 												<label class="control-label mb-10 text-left">N° DOCUMENTO</label>
-												<input type="text" class="form-control solo_numero" autocomplete="off" onkeyup="validardni();" required="true" name="n_documento" id="n_documento" maxlength="8" minlength="8" autofocus="true" value="">
+												<input type="text" class="form-control solo_numero" autocomplete="off" onchange="validardni();" required="true" name="n_documento" id="n_documento" maxlength="8" minlength="8" autofocus="true" value="">
 											</div>
 										</div>
 
@@ -135,10 +135,11 @@
 					$("#nombre").val(data[0]["cliente_nombre_completo"]);
 					$("#n_documento").val(data[0]["cliente_documento_numero"]);
 					$("#direccion").val(data[0]["cliente_direccion"]);
-					$("#celular").val(data[0]["cliente_direccion"]);
+					$("#celular").val(data[0]["cliente_telefono"]);
 					$("#celular_referencia").val(data[0]["cliente_telefono_referencia"]);
 					$("#correo").val(data[0]["cliente_correo"]);
 					$("#tipo_documento").val(data[0]["tipo_documento_cliente_id"]+"/"+data[0]["tipo_documento_cliente_tam"]);
+					$("#n_documento").attr('readonly','readonly');
 					$("#sexo").val(data[0]["cliente_sexo"]);
 
 
@@ -169,6 +170,9 @@
 				}
 			},"json");
 
+			}else{
+				alert('Ingrese los 8 digitos del DNI');
+				$("#n_documento").val('');
 			}
 		}
 
@@ -177,7 +181,7 @@
 			this.value = this.value.replace(/[^0-9]/g,'');
 		});
 		$('.solo_letras').on('input', function () { 
-			this.value = this.value.replace(/[^a-zA-ZáéíóúüñÁÉÍÓÚÜÑ]/g,'');
+			this.value = this.value.replace(/[^a-zA-ZáéíóúüñÁÉÍÓÚÜÑ ]/g,'');
 		});
 		$('.solo_direccion').on('input', function () { 
 			this.value = this.value.replace(/[^0-9a-zA-ZáéíóúüñÁÉÍÓÚÜÑ. #]/g,'');

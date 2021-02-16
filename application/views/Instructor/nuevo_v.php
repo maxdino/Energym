@@ -179,7 +179,7 @@ $('.solo_numero').on('input', function () {
       this.value = this.value.replace(/[^0-9]/g,'');
     });
     $('.solo_letras').on('input', function () { 
-      this.value = this.value.replace(/[^a-zA-ZáéíóúüñÁÉÍÓÚÜÑ]/g,'');
+      this.value = this.value.replace(/[^a-zA-ZáéíóúüñÁÉÍÓÚÜÑ ]/g,'');
     });
      
   <?php

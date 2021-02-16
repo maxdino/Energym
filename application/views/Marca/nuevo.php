@@ -18,7 +18,7 @@
 									<div class="form-group">
 										<input type="hidden"  name="id" id="id">
 										<label class="control-label mb-10 text-left">DESCRIPCION DE MARCA</label>
-										<input type="text" class="form-control" required="true" name="descripcion" id="descripcion" autofocus="true" value="">
+										<input type="text" class="form-control solo_letras" required="true" name="descripcion" id="descripcion" autofocus="true" value="">
 									</div>	
 									<br>
 									<center><a href="<?php echo  base_url();?>Marca_producto"><button class="btn btn-primary">Guardar</button></a><a href="<?php echo  base_url();?>Marca_producto"><button class="btn btn-danger" type="button" >Cancelar</button></a></center>								
@@ -35,10 +35,7 @@
 <script type="text/javascript">
 	<?php
 
-	if(isset($data["id"]))
-		{?>
-			
-
+	if(isset($data["id"])){ ?>
 			$(function(){
 				
 				$.post(base_url+"marca_producto/traer_uno",{"id":"<?php echo $data['id']?>"},function(data){
@@ -48,11 +45,10 @@
 
 				},"json");
 			});
-
-
-
-
-			<?php }
-
+			<?php
+			 }
 			?>
+			$('.solo_letras').on('input', function () { 
+			this.value = this.value.replace(/[^a-zA-ZáéíóúüñÁÉÍÓÚÜÑ ]/g,'');
+		});
 		</script>
