@@ -17,50 +17,50 @@
 								<form method="POST" id="enviar_cliente" onsubmit="return enviar_cliente_guardar()">
 									<input type="hidden" id="cliente_id" name="cliente_id">
 									<div class="row">
-									<div class="col-md-4">
-										<div class="form-group">
-									
-										<label class="control-label mb-10 text-left">N° DOCUMENTO</label>
-										<input type="text" class="form-control" autocomplete="off" onkeyup="validardni();" required="true" name="n_documento" id="n_documento" maxlength="8" minlength="8" autofocus="true" value="">
-									</div>
-								</div>
-									
-									<div class="col-md-4"><div class="form-group">
-									
-										<label class="control-label mb-10 text-left">Nombre Completo</label>
-										<input type="text" class="form-control" autocomplete="off" required="true" name="nombre" id="nombre"  autofocus="true" value="">
-									</div></div>
+										<div class="col-md-4">
+											<div class="form-group">
+
+												<label class="control-label mb-10 text-left">N° DOCUMENTO</label>
+												<input type="text" class="form-control solo_numero" autocomplete="off" onkeyup="validardni();" required="true" name="n_documento" id="n_documento" maxlength="8" minlength="8" autofocus="true" value="">
+											</div>
+										</div>
 
 										<div class="col-md-4"><div class="form-group">
-										
-										<label class="control-label mb-10 text-left">Direccion</label>
-										<input type="text" class="form-control" autocomplete="off" required="true" name="direccion" id="direccion"  autofocus="true" value="">
-									</div></div>
-									<div class="col-md-4"><div class="form-group">
-									
-										<label class="control-label mb-10 text-left">Celular</label>
-										<input type="text" class="form-control" autocomplete="off" required="true" name="celular" id="celular"  autofocus="true" value="">
-									</div></div>
-										<div class="col-md-4"><div class="form-group">
-									
-										<label class="control-label mb-10 text-left">Correo Electronico</label>
-										<input type="text" class="form-control" autocomplete="off" required="true" name="correo" id="correo"  autofocus="true" value="">
-									</div></div>
-										<div class="col-md-4"><div class="form-group">
-							
-										<label class="control-label mb-10 text-left">Celular referencia</label>
-										<input type="text" class="form-control" autocomplete="off"  name="celular_referencia" id="celular_referencia"  autofocus="true" value="">
-									</div></div>
 
-									<div class="col-md-4"><div class="form-group">
-									
-										<label class="control-label mb-10 text-left">Sexo</label>
-										<select class="form-control" id="sexo" name="sexo">
-											<option value="Masculino">Masculino</option>
-											<option value="Femenino">Femenino</option>
+											<label class="control-label mb-10 text-left">Nombre Completo</label>
+											<input type="text" class="form-control solo_letras" autocomplete="off" required="true" name="nombre" id="nombre"  autofocus="true" value="">
+										</div></div>
 
-										</select>
-									</div></div>
+										<div class="col-md-4"><div class="form-group">
+
+											<label class="control-label mb-10 text-left">Direccion</label>
+											<input type="text" class="form-control" autocomplete="off" required="true" name="direccion" id="direccion"  autofocus="true" value="">
+										</div></div>
+										<div class="col-md-4"><div class="form-group">
+
+											<label class="control-label mb-10 text-left">Celular</label>
+											<input type="text" class="form-control solo_numero" autocomplete="off" required="true" name="celular" id="celular" maxlength="9" autofocus="true" value="">
+										</div></div>
+										<div class="col-md-4"><div class="form-group">
+
+											<label class="control-label mb-10 text-left">Correo Electronico</label>
+											<input type="email" class="form-control" autocomplete="off" required="true" name="correo" id="correo"  autofocus="true" value="">
+										</div></div>
+										<div class="col-md-4"><div class="form-group">
+
+											<label class="control-label mb-10 text-left">Celular referencia</label>
+											<input type="text" class="form-control solo_numero" autocomplete="off"  name="celular_referencia" id="celular_referencia" maxlength="9"  autofocus="true" value="">
+										</div></div>
+
+										<div class="col-md-4"><div class="form-group">
+
+											<label class="control-label mb-10 text-left">Sexo</label>
+											<select class="form-control" id="sexo" name="sexo">
+												<option value="Masculino">Masculino</option>
+												<option value="Femenino">Femenino</option>
+
+											</select>
+										</div></div>
 
 									</div>	
 									<br>
@@ -82,34 +82,34 @@
 	{
 
 		//alert();
-		 var value = document.getElementById('n_documento').value;
+		var value = document.getElementById('n_documento').value;
 		$("#boton_guardar").attr("disablad",true);
 		$("#boton_guardar").text("Procesando...");
 
 
 
-         $.post(base_url+"Cliente/guardar_cliente",$("#enviar_cliente").serialize(),function(data){
-                    if(parseFloat(data)==1)
-                    {
-                        	alertasuccess('Se Registro correctamente','Exitoso');
-                        	setTimeout(function(){ 
-							location.href = base_url+"Cliente";
-						}, 1000);
-                    }
-                    if(parseFloat(data)==2)
-                     {
-							alertasuccess('Se Actualizo correctamente','Exitoso');
-							setTimeout(function(){ 
-							 location.href = base_url+"Cliente";
-						}, 1000);
-                     }
-                     if(parseFloat(data)==0)
-                      {
-							alertainfo('No se pudo completar!','Error');
+		$.post(base_url+"Cliente/guardar_cliente",$("#enviar_cliente").serialize(),function(data){
+			if(parseFloat(data)==1)
+			{
+				alertasuccess('Se Registro correctamente','Exitoso');
+				setTimeout(function(){ 
+					location.href = base_url+"Cliente";
+				}, 1000);
+			}
+			if(parseFloat(data)==2)
+			{
+				alertasuccess('Se Actualizo correctamente','Exitoso');
+				setTimeout(function(){ 
+					location.href = base_url+"Cliente";
+				}, 1000);
+			}
+			if(parseFloat(data)==0)
+			{
+				alertainfo('No se pudo completar!','Error');
 
-                      }
+			}
 
-         });
+		});
 		return false;
 	}
 	function tipo_documento_data() {
@@ -150,29 +150,34 @@
 
 
 
-			<?php }
+		<?php }
 
-			?>
+		?>
 
-	function validardni(){
-		cantidad = ($("#n_documento").val()).length;
-		dni = $("#n_documento").val();
-		if (cantidad == 8) {
-			$.post(base_url+"Cliente/validardni",{"n_documento":dni},function(data){
+		function validardni(){
+			cantidad = ($("#n_documento").val()).length;
+			dni = $("#n_documento").val();
+			if (cantidad == 8) {
+				$.post(base_url+"Cliente/validardni",{"n_documento":dni},function(data){
 					console.log(data);
-				if (data == 1) {
-					alert('Usuario ya registrado')
+					if (data == 1) {
+						alert('Usuario ya registrado')
 					//$("#boton_guardar").attr("disablad",true);
 					$('#boton_guardar').attr('disabled','disabled');
 				}else{
 					$('#boton_guardar').removeAttr('disabled');
 				}
+			},"json");
 
-
-
-
-				},"json");
-
+			}
 		}
-	}
-</script>
+
+
+		$('.solo_numero').on('input', function () { 
+			this.value = this.value.replace(/[^0-9]/g,'');
+		});
+		$('.solo_letras').on('input', function () { 
+			this.value = this.value.replace(/[^a-zA-ZáéíóúüñÁÉÍÓÚÜÑ]/g,'');
+		});
+		 
+	</script>

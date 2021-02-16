@@ -107,13 +107,7 @@
                   <h3 class="card-title">Producto</h3>
                   <hr>
                   <div class="row p-t-0">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label class="control-label">CODIGO DE BARRAS</label>
-                        <input type="text" id="codigobarra" name="codigobarra" class="form-control"   placeholder="">
-                        <!--<small class="form-control-feedback"> This is inline help </small> -->
-                      </div>
-                    </div>
+                     
                     <!--/span has-danger form-control-danger-->
                     <div class="col-md-6">
                       <div class="form-group has-success">
@@ -122,6 +116,18 @@
                         <!--<small class="form-control-feedback"> Select your gender </small> -->
                       </div>
                     </div>
+                    <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="control-label">UNIDAD DE MEDIDA</label>
+                    <select class="form-control custom-select" name="unidadmedida" id="unidadmedida"><option value=" "> </option>
+                      <?php foreach ($data["unidad_medida"] as $key => $value) { ?>
+                       <option value="<?php echo $value["id_unidad_medida"] ?>"><?php echo $value["unidad_medida_descripcion"] ?></option>
+                     <?php   } ?>
+                   </select>
+                   <!--<small class="form-control-feedback"> Select your gender </small> -->
+                 </div>
+               </div>
+                    
                     <!--/span-->
                   </div>
                   <div class="row p-t-0">
@@ -161,17 +167,7 @@
                    </div>
                  </div>
                  <!--/span-->
-                 <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="control-label">UNIDAD DE MEDIDA</label>
-                    <select class="form-control custom-select" name="unidadmedida" id="unidadmedida"><option value=" "> </option>
-                      <?php foreach ($data["unidad_medida"] as $key => $value) { ?>
-                       <option value="<?php echo $value["id_unidad_medida"] ?>"><?php echo $value["unidad_medida_descripcion"] ?></option>
-                     <?php   } ?>
-                   </select>
-                   <!--<small class="form-control-feedback"> Select your gender </small> -->
-                 </div>
-               </div>
+                 
              </div>
 
              <!--/span-->

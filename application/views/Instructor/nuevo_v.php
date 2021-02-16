@@ -80,7 +80,7 @@
                 <br><input type="hidden"  name="id" id="id">
                 <div class="row form-group has-success">
                   <label class="form-control-label" for="success">NOMBRE INSTRUCTOR</label>
-                  <input type="text" class="form-control form-control-success" id="nombre" name="nombre">
+                  <input type="text" class="form-control form-control-success solo_letras" id="nombre" name="nombre">
                 </div> 
 
               </div>  
@@ -175,6 +175,13 @@
               })
   }
 
+$('.solo_numero').on('input', function () { 
+      this.value = this.value.replace(/[^0-9]/g,'');
+    });
+    $('.solo_letras').on('input', function () { 
+      this.value = this.value.replace(/[^a-zA-ZáéíóúüñÁÉÍÓÚÜÑ]/g,'');
+    });
+     
   <?php
 
   if(isset($data["id"]))

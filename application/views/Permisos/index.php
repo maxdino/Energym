@@ -50,7 +50,7 @@
 					</div> 
 				</div>
 			</div>
-			<br>
+			<br> 
 				<center><a href="<?php echo base_url();?>"><button class="btn btn-primary ">Guardar</button></a><a href="<?php echo  base_url();?>"><button class="btn btn-danger" type="button" >Cancelar</button></a></center><br>
 		</div>
 	</form>
