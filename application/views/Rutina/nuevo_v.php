@@ -18,7 +18,7 @@
 									<div class="form-group">
 										<input type="hidden"  name="id" id="id">
 										<label class="control-label mb-10 text-left">DESCRIPCION DE RUTINA</label>
-										<input type="text" class="form-control" required="true" name="descripcion" id="descripcion" autofocus="true" value="">
+										<input type="text" class="form-control solo_letras" required="true" name="descripcion" id="descripcion" autofocus="true" value="">
 									</div>	
 									<div class="form-row">
 										<div class="col-md-6 mb-3">
@@ -71,4 +71,7 @@
 		<?php }
 
 		?>
+		$('.solo_letras').on('input', function () { 
+			this.value = this.value.replace(/[^a-zA-ZáéíóúüñÁÉÍÓÚÜÑ ]/g,'');
+		});
 	</script>
