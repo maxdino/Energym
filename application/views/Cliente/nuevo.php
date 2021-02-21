@@ -28,13 +28,13 @@
 										<div class="col-md-4"><div class="form-group">
 
 											<label class="control-label mb-10 text-left">Nombre Completo</label>
-											<input type="text" class="form-control solo_letras" autocomplete="off" required="true" name="nombre" id="nombre"  autofocus="true" value="">
+											<input type="text" onchange="borrar_espacios('nombre')" class="form-control solo_letras" autocomplete="off" required="true" name="nombre" id="nombre"  autofocus="true" value="">
 										</div></div>
 
 										<div class="col-md-4"><div class="form-group">
 
 											<label class="control-label mb-10 text-left">Direccion</label>
-											<input type="text" class="form-control solo_direccion" autocomplete="off" required="true" name="direccion" id="direccion"  autofocus="true" value="">
+											<input type="text" onchange="borrar_espacios('direccion')" class="form-control solo_direccion" autocomplete="off" required="true" name="direccion" id="direccion"  autofocus="true" value="">
 										</div></div>
 										<div class="col-md-4"><div class="form-group">
 
@@ -44,7 +44,7 @@
 										<div class="col-md-4"><div class="form-group">
 
 											<label class="control-label mb-10 text-left">Correo Electronico</label>
-											<input type="email" class="form-control" autocomplete="off" required="true" name="correo" id="correo"  autofocus="true" value="">
+											<input type="text"  class="form-control" autocomplete="off" required="true" name="correo" id="correo" onchange="validar_correo()"  autofocus="true" value="">
 										</div></div>
 										<div class="col-md-4"><div class="form-group">
 
@@ -147,10 +147,6 @@
 
 				},"json");
 			});
-
-
-
-
 		<?php }
 
 		?>
@@ -186,5 +182,16 @@
 		$('.solo_direccion').on('input', function () { 
 			this.value = this.value.replace(/[^0-9a-zA-ZáéíóúüñÁÉÍÓÚÜÑ. #]/g,'');
 		});
-		  
-	</script>
+		function validar_correo(){
+ 		correo = $('#correo').val();
+		emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+    //Se muestra un texto a modo de ejemplo, luego va a ser un icono
+    if (!emailRegex.test(correo)) {
+    	$('#correo').val('');		
+     } 
+	}
+		function borrar_espacios(name){
+			cadena = $('#'+name).val();
+			$('#'+name).val($.trim(cadena));
+		}
+	</script>		 
