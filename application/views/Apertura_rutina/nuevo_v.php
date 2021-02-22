@@ -42,7 +42,7 @@
                     <div class="col-md-3">
                       <div class="form-group">
                         <label class="control-label mb-10 text-left">FRECUENCIA</label>
-                        <input type="text"  class="form-control" autocomplete="off"  name="frecuencia" id="frecuencia"  autofocus="true" value="">
+                        <input type="text"  class="form-control solo_numero" maxlength="2"  autocomplete="off"  name="frecuencia" id="frecuencia"  autofocus="true" value="">
                       </div>
                     </div>
                     <div class="col-md-3">
@@ -154,5 +154,7 @@ $("#hora_fin").attr('min',$("#hora_inicio").val())
   }
  
   
-
+  $('.solo_numero').on('input', function () { 
+      this.value = this.value.replace(/[^0-9]/g,'');
+    });
 </script>

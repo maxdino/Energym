@@ -80,7 +80,7 @@
                 <br><input type="hidden"  name="id" id="id">
                 <div class="row form-group has-success">
                   <label class="form-control-label" for="success">NOMBRE INSTRUCTOR</label>
-                  <input type="text" class="form-control form-control-success solo_letras" id="nombre" name="nombre">
+                  <input type="text" class="form-control form-control-success solo_letras" onchange="borrar_espacios('nombre')" id="nombre" name="nombre">
                 </div> 
 
               </div>  
@@ -110,7 +110,7 @@
                     <div class="col-md-12">
                       <div class="form-group">
                         <label class="control-label">NUMERO DOCUMENTO IDENTIDAD</label> 
-                        <input type="text" maxlength="8"  name="dni" id="dni" onkeypress="return solonumeros(event)" class="form-control" placeholder=" ">
+                        <input type="text" maxlength="8"  name="dni" id="dni"  class="form-control solo_numero" placeholder=" ">
                         <!--<small class="form-control-feedback"> This is inline help </small> -->
                       </div>
                     </div>
@@ -200,5 +200,15 @@ $('.solo_numero').on('input', function () {
     <?php }
 
     ?>
+    function borrar_espacios(name){
+      cadena = $('#'+name).val();
+      $('#'+name).val($.trim(cadena));
+    }
 
+    $('.solo_numero').on('input', function () { 
+      this.value = this.value.replace(/[^0-9]/g,'');
+    });
+    $('.solo_letras').on('input', function () { 
+      this.value = this.value.replace(/[^a-zA-ZáéíóúüñÁÉÍÓÚÜÑ ]/g,'');
+    });
   </script>

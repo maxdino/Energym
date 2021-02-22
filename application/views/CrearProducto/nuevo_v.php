@@ -80,7 +80,7 @@
                 <br><input type="hidden"  name="id" id="id">
                 <div class="row form-group has-success">
                   <label class="form-control-label" for="success">Nom. Producto</label>
-                  <input type="text" class="form-control form-control-success" id="producto_nombre" name="producto_nombre">
+                  <input type="text" class="form-control form-control-success solo_letras" id="producto_nombre" onchange="borrar_espacios('producto_nombre')" name="producto_nombre">
                 </div> 
 
               </div>  
@@ -112,7 +112,7 @@
                     <div class="col-md-6">
                       <div class="form-group has-success">
                         <label class="control-label">PRECIO PRODUCTO</label>
-                        <input type="text" step="0.01" id="precioproducto"   maxlength="9" name="precioproducto" onkeypress="return solonumeros(event)" class="form-control solo_precio" placeholder=" ">
+                        <input type="text" step="0.01" id="precioproducto"   maxlength="9" name="precioproducto"  onchange="formato_numero('precioproducto')" class="form-control solo_precio" placeholder=" ">
                         <!--<small class="form-control-feedback"> Select your gender </small> -->
                       </div>
                     </div>
@@ -195,6 +195,10 @@
 
 
 <script type="text/javascript"> 
+  $('#unidadmedida').select2();
+  $('#categoria_producto').select2();
+  $('#marca').select2();
+
   function readURL(input) {
     var  variable;
     if (input.files && input.files[0]) {
@@ -257,4 +261,15 @@
     $('.solo_numero').on('input', function () { 
       this.value = this.value.replace(/[^0-9.]/g,'');
     });
+    $('.solo_letras').on('input', function () { 
+      this.value = this.value.replace(/[^a-zA-ZáéíóúüñÁÉÍÓÚÜÑ ]/g,'');
+    });
+    function borrar_espacios(name){
+      cadena = $('#'+name).val();
+      $('#'+name).val($.trim(cadena));
+    }
+    function formato_numero(name){
+      formato = $('#'+name).val();
+      $('#'+name).val(parseFloat(formato).toFixed(2));
+    }
   </script>

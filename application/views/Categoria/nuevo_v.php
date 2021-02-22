@@ -18,7 +18,7 @@
 									<div class="form-group">
 										<input type="hidden"  name="id" id="id">
 										<label class="control-label mb-10 text-left">DESCRIPCION DE CATEGORIA</label>
-										<input type="text" class="form-control solo_letras" required="true" name="descripcion" id="descripcion" autofocus="true" value="">
+										<input type="text" class="form-control solo_letras" required="true" name="descripcion" id="descripcion" onchange="borrar_espacios('descripcion')" autofocus="true" value="">
 									</div>	
 									<br>
 									<center><a href="<?php echo  base_url();?>Categoria_c"><button class="btn btn-primary">Guardar</button></a><a href="<?php echo  base_url();?>Categoria_c"><button class="btn btn-danger" type="button" >Cancelar</button></a></center>								
@@ -60,4 +60,9 @@
 		$('.solo_letras').on('input', function () { 
 			this.value = this.value.replace(/[^a-zA-ZáéíóúüñÁÉÍÓÚÜÑ ]/g,'');
 		});
+
+		function borrar_espacios(name){
+			cadena = $('#'+name).val();
+			$('#'+name).val($.trim(cadena));
+		}
 	</script>

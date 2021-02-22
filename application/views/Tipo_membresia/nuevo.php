@@ -20,7 +20,7 @@
 											<div class="form-group">
 
 												<label class="control-label mb-10 text-left">DESCRIPCION</label>
-												<input type="text" class="form-control" autocomplete="off" required="true" name="descripcion" id="descripcion" autofocus="true" value="">
+												<input type="text" class="form-control solo_letras" autocomplete="off" required="true" name="descripcion" id="descripcion" onchange="borrar_espacios('descripcion')" autofocus="true" value="">
 											</div>
 										</div>
 
@@ -28,7 +28,7 @@
 										<div class="col-md-4"><div class="form-group">
 
 											<label class="control-label mb-10 text-left">PRECIO MENSUAL</label>
-											<input type="text" class="form-control" type="number" min="1" autocomplete="off"  name="precio_mensual" id="precio_mensual"  required="true" value="">
+											<input type="text" class="form-control solo_precio" type="text" autocomplete="off"  name="precio_mensual" id="precio_mensual" onchange="formato_numero('precio_mensual')" required="true"  >
 										</div></div>
 
 										<div class="col-md-4">
@@ -196,5 +196,24 @@
 		}
 	}
 
+	function borrar_espacios(name){
+		cadena = $('#'+name).val();
+		$('#'+name).val($.trim(cadena));
+	}
 
+	$('.solo_letras').on('input', function () { 
+			this.value = this.value.replace(/[^a-zA-ZáéíóúüñÁÉÍÓÚÜÑ ]/g,'');
+		});
+	$('.solo_precio').on('input', function () { 
+			this.value = this.value.replace(/[^0-9.]/g,'');
+		});
+
+	function formato_numero(name){
+      formato = $('#'+name).val();
+      if (formato>1) {
+      $('#'+name).val(parseFloat(formato).toFixed(2));
+    }else{
+      $('#'+name).val(parseFloat(1).toFixed(2));
+    }
+}
 </script>

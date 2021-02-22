@@ -43,31 +43,31 @@
                     <div class="col-md-3">
                       <h4>Peso:</h4>
                       <div class="form-group">
-                        <input type="text" name="peso" id="peso">
+                        <input type="text" name="peso" id="peso" class="solo_medida" onchange="formato_numero('peso')">
                       </div>
                     </div>
                     <div class="col-md-3">
                       <h4>Biceps:</h4>
                       <div class="form-group">
-                        <input type="text" name="biceps" id="biceps">
+                        <input type="text" name="biceps" id="biceps" class="solo_medida" onchange="formato_numero('biceps')">
                       </div>
                     </div>
                     <div class="col-md-3">
                       <h4>IMC:</h4>
                       <div class="form-group">
-                        <input type="text" name="imc" id="imc">
+                        <input type="text" name="imc" id="imc"  class="solo_medida" onchange="formato_numero('imc')">
                       </div>
                     </div>
                     <div class="col-md-3">
                       <h4>Triceps:</h4>
                       <div class="form-group">
-                        <input type="text" name="triceps" id="triceps">
+                        <input type="text" name="triceps" id="triceps"  class="solo_medida" onchange="formato_numero('triceps')">
                       </div>
                     </div>
                     <div class="col-md-3">
                       <h4>Cintura:</h4>
                       <div class="form-group">
-                        <input type="text" name="cintura" id="cintura">
+                        <input type="text" name="cintura" id="cintura"  class="solo_medida" onchange="formato_numero('cintura')">
                       </div>
                     </div>
                     <div class="col-md-12">
@@ -229,8 +229,14 @@
       purple: 'rgb(153, 102, 255)',
       grey: 'rgb(231,233,237)'
     };*/
+    $('.solo_medida').on('input', function () { 
+      this.value = this.value.replace(/[^0-9.]/g,'');
+    });
 
-
+    function formato_numero(name){
+      formato = $('#'+name).val();
+      $('#'+name).val(parseFloat(formato).toFixed(2));
+    }
 
   </script>
   <script type="text/javascript">
