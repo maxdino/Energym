@@ -89,83 +89,81 @@ public function busqueda_asistencia($dni)
      if($fecha_actual<=$fecha_final)
      {
 
-     $fecha_actual=strtotime(date("Y-m-d"));
-     $fecha_inicio=strtotime($data[0]["fecha_inicio"]);
-      if ($fecha_inicio<=$fecha_actual) {
- 
-      $verficar=$this->Mantenimiento_m->consulta3("select * from asistencia inner JOIN control_asistencia on control_asistencia.asistencia_id=asistencia.asistencia_id where matricula_id=".$data[0]["matricula_id"]." and control_asistencia.asistencia_fecha='".date("Y-m-d")."'")  ;
-      if($verficar[0]["fecha"]==''&&$verficar[0]["hora"]==''){
-       $fecha_hora = date('Y-m-d H:i:s');
-        $datos=array(
-         "estado"=>1,
-         "fecha"=>date("Y-m-d"),
-         "hora"=>date("H:i:s")
-       );
-        $this->db->where('asistencia_id',$verficar[0]["asistencia_id"]);
-        $this->db->where('matricula_id',$data[0]["matricula_id"]);
-        $this->db->update('asistencia',$datos);
-        $json=array(
-         "mensaje"=>"SE REGISTRO CORRECTAMENTE",
-         "estado"=>1,
-         "fecha"=>$fecha_hora,
-         "dni"=>$dni,
-         "nombre"=>$cliente[0]["cliente_nombre_completo"],
-         "dias" => 'Quedan '.$dias.' dias',
-         "alerta" => $alerta
-       );
+       $fecha_actual=strtotime(date("Y-m-d"));
+       $fecha_inicio=strtotime($data[0]["fecha_inicio"]);
+       if ($fecha_inicio<=$fecha_actual) {
 
-      }else{
+        $verficar=$this->Mantenimiento_m->consulta3("select * from asistencia inner JOIN control_asistencia on control_asistencia.asistencia_id=asistencia.asistencia_id where matricula_id=".$data[0]["matricula_id"]." and control_asistencia.asistencia_fecha='".date("Y-m-d")."'");
+        if(!($verficar)){
+          $json=array(
+            "mensaje"=>"SU DOCENTE AUN NO A LLEGADO",
+           "estado"=>2,
+           "fecha"=>"Ten paciencia por favor",
+           "dni"=>$dni,
+           "nombre"=>$cliente[0]["cliente_nombre_completo"],
+           "dias" => '',
+           "alerta" => $alerta
+         );  
 
-        $json=array(
-         "mensaje"=>"YA SE REGISTRO SU ASISTENCIA",
-         "estado"=>2,
-         "fecha"=>$verficar[0]["fecha"].' '.$verficar[0]["hora"],
-         "dni"=>$dni,
-         "nombre"=>$cliente[0]["cliente_nombre_completo"],
-         "dias" => 'Quedan '.$dias.' dias',
-         "alerta" => $alerta
-       );  
+        }else{
+          if($verficar[0]["fecha"]==''&&$verficar[0]["hora"]==''){
+           $fecha_hora = date('Y-m-d H:i:s');
+           $datos=array(
+             "estado"=>1,
+             "fecha"=>date("Y-m-d"),
+             "hora"=>date("H:i:s")
+           );
+           $this->db->where('asistencia_id',$verficar[0]["asistencia_id"]);
+           $this->db->where('matricula_id',$data[0]["matricula_id"]);
+           $this->db->update('asistencia',$datos);
+           $json=array(
+             "mensaje"=>"SE REGISTRO CORRECTAMENTE",
+             "estado"=>1,
+             "fecha"=>$fecha_hora,
+             "dni"=>$dni,
+             "nombre"=>$cliente[0]["cliente_nombre_completo"],
+             "dias" => 'Quedan '.$dias.' dias',
+             "alerta" => $alerta
+           );
+
+         }else{
+
+          $json=array(
+           "mensaje"=>"YA SE REGISTRO SU ASISTENCIA",
+           "estado"=>2,
+           "fecha"=>$verficar[0]["fecha"].' '.$verficar[0]["hora"],
+           "dni"=>$dni,
+           "nombre"=>$cliente[0]["cliente_nombre_completo"],
+           "dias" => 'Quedan '.$dias.' dias',
+           "alerta" => $alerta
+         );  
+        }
       }
+
     }else{
       $fecha1 = new DateTime(date("Y-m-d"));
       $fecha2 = new DateTime($data[0]["fecha_inicio"]);
       $resultado = $fecha1->diff($fecha2);
       $dias =  $resultado->format('%a'); 
-       $alerta = '2';
+      $alerta = '2';
 
       $json=array(
-     "mensaje"=>"AUN NO COMIENZA SU MATRICULA",
-     "estado"=>2,
-     "fecha"=>" ",
-     "dni"=>$dni,
-     "nombre"=>$cliente[0]["cliente_nombre_completo"],
-     "dias" => 'Le faltan '.$dias.' dias para que comienze su matricula',
-     "alerta" => $alerta
-      );
-    }
-
-    }else
-    {
-     $json=array(
-       "mensaje"=>"NO TIENE UNA MATRICULA ACTIVA ",
+       "mensaje"=>"AUN NO COMIENZA SU MATRICULA",
        "estado"=>2,
-       "fecha"=>"necesita actulizar su matricula",
+       "fecha"=>" ",
        "dni"=>$dni,
        "nombre"=>$cliente[0]["cliente_nombre_completo"],
-       "dias" => '',
+       "dias" => 'Le faltan '.$dias.' dias para que comienze su matricula',
        "alerta" => $alerta
-     );  
+     );
+    }
 
-   }
-
-
-
- }else
- {
+  }else
+  {
    $json=array(
      "mensaje"=>"NO TIENE UNA MATRICULA ACTIVA ",
      "estado"=>2,
-     "fecha"=>"necesita actualizar su matricula",
+     "fecha"=>"necesita actulizar su matricula",
      "dni"=>$dni,
      "nombre"=>$cliente[0]["cliente_nombre_completo"],
      "dias" => '',
@@ -173,6 +171,22 @@ public function busqueda_asistencia($dni)
    );  
 
  }
+
+
+
+}else
+{
+ $json=array(
+   "mensaje"=>"NO TIENE UNA MATRICULA ACTIVA ",
+   "estado"=>2,
+   "fecha"=>"necesita actualizar su matricula",
+   "dni"=>$dni,
+   "nombre"=>$cliente[0]["cliente_nombre_completo"],
+   "dias" => '',
+   "alerta" => $alerta
+ );  
+
+}
 }else
 {
 

@@ -21,16 +21,16 @@ class Permisos extends BaseController {
 			FROM
 			modulos 
 			INNER JOIN modulos AS modulohijo ON modulos.modulo_padre = modulohijo.modulo_id
- 			WHERE modulohijo.modulo_id != 1 
-			GROUP BY modulohijo.modulo_padre,modulohijo.modulo_nombre")->result_array();
+ 			WHERE modulohijo.modulo_id != 1 and modulos.estado=1
+			GROUP BY modulohijo.modulo_padre,modulohijo.modulo_nombre")->result_array();//padre
 		foreach ($data as $key => $value) {
 			$mod = $this->db->query("SELECT modulos.modulo_id,modulos.modulo_nombre
 				FROM
 				modulos
 				INNER JOIN modulos AS modulohijo ON modulos.modulo_padre = modulohijo.modulo_id 
 				WHERE
-				 
-				modulohijo.modulo_id =".$value["modulo_id"])->result_array();
+				modulos.estado=1 and
+				modulohijo.modulo_id =".$value["modulo_id"])->result_array();//hijo
 			$data[$key]["lista"] = $mod;
 		}
  

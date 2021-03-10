@@ -50,7 +50,8 @@ class Modulo extends BaseController {
 	}
 
 	public function eliminar($id){
-      	$this->Mantenimiento_m->consulta1("update modulos set estado=0 where modulo_id=".$id);
+      	$this->Mantenimiento_m->coneliminar("update modulos set estado=0 where modulo_id=".$id);
+      	header('Location: '.base_url()."modulo");
 	} 
 	
 }

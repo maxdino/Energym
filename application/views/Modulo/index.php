@@ -28,7 +28,7 @@
                             echo "<td>".$value["modulo_nombre"]."</td>";
                             echo "<td>".$value["modulo_url"]."</td>";
                             echo "<td><a href='javascript:void(0)' title='".$value["modulo_icono"]."'><i class='".$value["modulo_icono"]."' ></i></a></td>"; 
-                            echo '<td><a  onclick="eliminar('.$a.')" class="text-inverse" title="Eliminar" data-toggle="tooltip"><i class="mdi mdi-delete-empty txt-danger"></i></a> <a href="'.base_url().'Modulo/editar/'.$value["modulo_id"].'" class="text-inverse" title="Editar" data-toggle="tooltip"><i class="mdi mdi-table-edit txt-danger"></i></a></td>';
+                            echo '<td><a  href="'.base_url().'Modulo/eliminar/'.$value["modulo_id"].'" class="text-inverse" title="Eliminar" data-toggle="tooltip"><i class="mdi mdi-delete-empty txt-danger"></i></a> <a href="'.base_url().'Modulo/editar/'.$value["modulo_id"].'" class="text-inverse" title="Editar" data-toggle="tooltip"><i class="mdi mdi-table-edit txt-danger"></i></a></td>';
                             echo "</tr>";
                             $c++;
                           }  ?>

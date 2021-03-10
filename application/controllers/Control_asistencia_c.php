@@ -18,7 +18,9 @@ class Control_asistencia_c extends BaseController {
 	public function nuevo(){
 		$data=array();
 		$data["titulo_descripcion"]="Nuevo Control Asistencia"; 
-		$data["apertura_rutina"]=$this->Mantenimiento_m->consulta3("SELECT * FROM apertura_rutina left join instructor on instructor.instructor_id=apertura_rutina.instructor_id WHERE estado = 1  ");
+		$data["apertura_rutina"]=$this->Mantenimiento_m->consulta3("SELECT * FROM apertura_rutina 
+left join instructor on instructor.instructor_id=apertura_rutina.instructor_id 
+WHERE apertura_rutina.estado = 1 and apertura_rutina.fecha_inicio <= '".date('Y-m-d')."' and apertura_rutina.fecha_fin>= '".date('Y-m-d')."' ");
 		$this->vista("Control_asistencia/nuevo_v",$data);
 	}
 	public function guardar(){

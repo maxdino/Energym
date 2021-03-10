@@ -19,7 +19,7 @@ class Matricula_c  extends BaseController {
    $data=array();
    $data["titulo_descripcion"]="Nueva Matricula";
    $estilo = '';
-   $data["apertura_rutina"]=$this->Mantenimiento_m->consulta3("SELECT * FROM apertura_rutina left join instructor on instructor.instructor_id=apertura_rutina.instructor_id where apertura_rutina.estado = 1 ");
+   $data["apertura_rutina"]=$this->Mantenimiento_m->consulta3("SELECT * FROM apertura_rutina left join instructor on instructor.instructor_id=apertura_rutina.instructor_id where apertura_rutina.estado = 1 and apertura_rutina.fecha_inicio <= '".date('Y-m-d')."' and apertura_rutina.fecha_fin>= '".date('Y-m-d')."' ");
    $data["tipocomprobantes"] = $this->Mantenimiento_m->consulta3("SELECT * FROM tipo_documento WHERE tipodoc_estado = 1");
    $data["clientes"]=$this->Mantenimiento_m->consulta3(" SELECT cliente.cliente_nombre_completo,cliente.cliente_id,matricula.fecha_fin,
     CASE WHEN matricula.fecha_fin >= '".date('Y-m-d')."' THEN 'disabled style=".$estilo."' ELSE '' END AS estado FROM cliente

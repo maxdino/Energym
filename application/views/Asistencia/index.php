@@ -14,7 +14,7 @@
                  <div class="col-md-4">
                  	<div class="form-group">
                  		<label>Buscar Con Dni</label>
-                 		<input type="text" class="form-control" id="dni" autocomplete="off" autofocus="true" name="dni">
+                 		<input type="text" class="form-control solo_numero" maxlength="8" id="dni" autocomplete="off" autofocus="true" name="dni">
                  	</div>
                  </div>
                  <div class="col-md-2"><br>
@@ -82,4 +82,7 @@ $("#dni").val("");
 		return false;
 		// body...
 	}
+    $('.solo_numero').on('input', function () { 
+      this.value = this.value.replace(/[^0-9]/g,'');
+    });
 </script>
